@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.Login">
+
+
+
+    <VerticalStackLayout>
+
+        <Label             
+            Text="Sign-In"
+            Style="{StaticResource SubHeadline}"
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="Center" 
+            TranslationY="-6"/>
+
+        <Image
+            Source="signin.png"             
+            SemanticProperties.Description="Sign In User!"
+            HeightRequest="200"
+            WidthRequest="200"
+            TranslationY="10"
+            HorizontalOptions="CenterAndExpand"/>
+
+        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center" FontSize="16"/>
+
+        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" HorizontalTextAlignment="Center" FontSize="16"/>
+
+        <Button
+             x:Name="IngresarBtn"
+             Clicked="IngresarBtn_Clicked"
+             HorizontalOptions="Fill" 
+             Text="Ingresar"                                       
+             FontSize="14"
+             TranslationY="55"/>
+
+        <Button
+             x:Name="OlvidarPassBtn"
+             Clicked="OlvidarPassBtn_Clicked"             
+             TextColor="Aqua"
+             Text="¿Has olvidado tu contraseña?"                                       
+             BackgroundColor="#00000000" 
+             FontSize="14"
+             TranslationY="65"/>
+
+        <Button
+              x:Name="RegisterBtn"
+              Clicked="RegisterBtn_Clicked"
+              HorizontalOptions="Fill" 
+              Text="Registrarse"                                       
+              FontSize="14"
+              TranslationY="75"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>
+    
+    
+    
+    
+    
+    
