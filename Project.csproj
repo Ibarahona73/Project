@@ -68,8 +68,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Backend\" />
-	</ItemGroup>
-
 </Project>
