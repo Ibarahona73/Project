@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.Register"
+             Title="Register">
+    
+    
+    <VerticalStackLayout>
+        <Label             
+            Text="Sign-Up"
+            Style="{StaticResource SubHeadline}"
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="Center" 
+            TranslationY="-6"/>
+
+        <Image
+            Source="regis.png"             
+            SemanticProperties.Description="Sign Up User!"
+            HeightRequest="200"
+            WidthRequest="200"
+            TranslationY="5"
+            HorizontalOptions="CenterAndExpand"/>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            
+
+            <Entry x:Name="RegNombre" Placeholder="Ingrese Su Nombre" Keyboard="Text" Grid.Row="1"                    
+                   VerticalOptions="Center"
+                   HorizontalOptions="Fill"
+                   HorizontalTextAlignment="Center"
+                   FontSize="15"/>
+            
+
+            <Entry x:Name="RegApellido" Placeholder="Ingrese Su Apellido" Keyboard="Text" Grid.Row="1" Grid.Column="1"                    
+                    VerticalOptions="Center"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    FontSize="15"/>  
+
+        </Grid>
+
+        <Entry x:Name="RegEmail" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" HorizontalOptions="Fill" HorizontalTextAlignment="Center" FontSize="15"/>
+        
+        <Entry x:Name="RegContra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" HorizontalOptions="Fill" HorizontalTextAlignment="Center" TranslationY="20" 
+               IsPassword="True" FontSize="15"/>
+
+        <DatePicker x:Name="RegFechaNac"  Format="d" HorizontalOptions="Fill" TranslationY="20" />
+
+        <Entry x:Name="RegPhone" Placeholder="Ingrese Su Telefono" Keyboard="Telephone" HorizontalOptions="Fill" HorizontalTextAlignment="Center" TranslationY="20" FontSize="15"/>
+
+        <Button
+              x:Name="Procesar"
+              Clicked="Procesar_Clicked"
+              HorizontalOptions="Fill" 
+              Text="Procesar"                                       
+              FontSize="14"
+              TranslationY="35"/>
+
+
+
+    </VerticalStackLayout>
+</ContentPage>
