@@ -52,6 +52,14 @@
               TranslationY="75"/>
 
 
+        <Button
+               x:Name="RegGoogle"
+               Clicked="RegGoogle_Clicked"
+               HorizontalOptions="Fill" 
+               Text="Registrar Con Google"                                       
+               FontSize="14"
+               TranslationY="85"/>
+
     </VerticalStackLayout>
 </ContentPage>
     
