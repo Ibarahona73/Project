@@ -9,8 +9,7 @@ public partial class Register : ContentPage
 
     private async void Procesar_Clicked(object sender, EventArgs e)
     {
-
-
+        
         // Crear una instancia de la página LoginPage.xaml
         Login loginPage = new Login();
 

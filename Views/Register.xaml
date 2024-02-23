@@ -65,7 +65,8 @@
               HorizontalOptions="Fill" 
               Text="Procesar"                                       
               FontSize="14"
-              TranslationY="35"/>
+              TranslationY="35"
+              IsEnabled="True"/>
 
 
     </VerticalStackLayout>

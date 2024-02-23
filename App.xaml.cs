@@ -1,4 +1,6 @@
-﻿namespace Project
+﻿using Project.Views;
+
+namespace Project
 {
     public partial class App : Application
     {
@@ -7,7 +9,11 @@
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new Views.Login());
+            MainPage = new NavigationPage(new Login());
+
+
+            //Para mostrar El menu
+            //MainPage = new Views.DashBoardo();
         }
     }
 }
