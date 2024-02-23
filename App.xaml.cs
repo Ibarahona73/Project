@@ -10,6 +10,7 @@ namespace Project
 
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new Login());
+            NavigationPage.SetHasNavigationBar(this, false);
 
 
             //Para mostrar El menu

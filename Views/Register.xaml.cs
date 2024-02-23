@@ -5,7 +5,8 @@ public partial class Register : ContentPage
 	public Register()
 	{
 		InitializeComponent();
-	}
+        NavigationPage.SetHasNavigationBar(this, false);
+    }
 
     private async void Procesar_Clicked(object sender, EventArgs e)
     {

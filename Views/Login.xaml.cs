@@ -7,7 +7,7 @@ public partial class Login : ContentPage
     public Login()
     {
         InitializeComponent();
-
+        NavigationPage.SetHasNavigationBar(this, false);
 
     }
 
