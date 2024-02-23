@@ -20,6 +20,14 @@ public partial class Login : ContentPage
 
     private async void IngresarBtn_Clicked(object sender, EventArgs e)
     {
+        // Verificar que los campos estén completos
+        if (string.IsNullOrWhiteSpace(Email.Text) || string.IsNullOrWhiteSpace(Contra.Text))
+        {
+            // Mostrar una alerta indicando que los campos deben estar completos
+            await DisplayAlert("Campos incompletos", "Por favor complete todos los campos", "Aceptar");
+            return; // Salir del método si los campos no están completos
+        }
+
         // Verificar las credenciales
         if (Email.Text == "hola@gmail.com" && Contra.Text == "1234")
         {
@@ -39,7 +47,16 @@ public partial class Login : ContentPage
                 await currentNavigationPage.PushAsync(dashBoardPage);
             }
         }
+        else
+        {
+            // Mostrar una alerta indicando que las credenciales son incorrectas
+            await DisplayAlert("Credenciales incorrectas", "El correo electrónico o la contraseña son incorrectos", "Aceptar");
+        }
+
+        // Limpiar el campo de contraseña independientemente del resultado de las credenciales
+        Contra.Text = string.Empty;
     }
+
 
 
 
