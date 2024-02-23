@@ -32,11 +32,15 @@ public partial class Login : ContentPage
             // Verificar si currentNavigationPage no es nulo antes de continuar
             if (currentNavigationPage != null)
             {
+                // Deshabilitar el botón de retroceso en la barra de navegación
+                NavigationPage.SetHasBackButton(dashBoardPage, false);
+
                 // Navegar a la página DashBoardAtras dentro del NavigationPage actual
                 await currentNavigationPage.PushAsync(dashBoardPage);
             }
         }
     }
+
 
 
     private async void RegisterBtn_Clicked(object sender, EventArgs e)

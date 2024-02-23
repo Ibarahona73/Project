@@ -47,6 +47,10 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\logo.png" Color="Transparent" ForegroundScale="0.65" />
+		<MauiSplashScreen Include="Resources\Images\logo_nombre_v2.png">
+		  <Color>#FFFFFF</Color>
+		  <BaseSize>500,500</BaseSize>
+		</MauiSplashScreen>
 		
 
 		<!-- Splash Screen -->
@@ -64,6 +68,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\logo_nombre_v2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\logo_nombre_v2.png" />
 	  <None Remove="Resources\Splash\logo_nombre_v2.png" />
 	</ItemGroup>
 
@@ -84,7 +93,19 @@
 	  <MauiXaml Update="Views\DashBoardo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Imagen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ListaRecordatorio.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NotaDeVoz.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NotaTexto.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Register.xaml">

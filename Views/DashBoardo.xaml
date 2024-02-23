@@ -5,14 +5,75 @@
              xmlns:local1="clr-namespace:Project.Views"
              Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
-        Title="Inicio"
-        ContentTemplate="{DataTemplate local1:DashBoardAtras}"
-        Route="DashBoardAtras"/>
 
-    <ShellContent
-        Title="Login"
-        ContentTemplate="{DataTemplate local1:Login}"
-        Route="Login"/>    
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="5">
+                <Label Text="{Binding Title}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Padding="10,5,10,10"/>
 
+                <Image Source="{Binding FlyoutIcon}"
+                       Aspect="AspectFill"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       HorizontalOptions="End"/>
+                
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.FlyoutHeader>
+        <Border BackgroundColor="Grey"
+                StrokeThickness="0">
+            <Grid ColumnDefinitions="Auto,*"
+                  Padding="25">
+
+                <Label Grid.Column="1"
+                       Text="Nose"
+                       VerticalOptions="Center"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       TranslationX="5"/>
+
+                <Image Grid.Column="0"
+                       Source="logo_nombre_v2.png"
+                       Aspect="AspectFill"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       HorizontalOptions="End"/>
+            </Grid>
+        </Border>
+    </Shell.FlyoutHeader>
+    
+        <ShellContent
+            Title="Inicio"
+            Icon="dotnet_bot.png"
+            ContentTemplate="{DataTemplate local1:DashBoardAtras}"
+            Route="DashBoardAtras"/>
+
+        <ShellContent
+            Title="Imagen"
+            ContentTemplate="{DataTemplate local1:Imagen}"
+            Route="Imagen"/>
+
+        <ShellContent
+            Title="Nota De Voz"
+            ContentTemplate="{DataTemplate local1:NotaDeVoz}"
+            Route="NotaDeVoz"/>
+
+        <ShellContent
+            Title="Nota De Texto"
+            ContentTemplate="{DataTemplate local1:NotaTexto}"
+            Route="NotaTexto"/>
+
+        <ShellContent
+            Title="Lista De Recordatorio"
+            ContentTemplate="{DataTemplate local1:ListaRecordatorio}"
+            Route="ListaRecordatorio"/>
+
+        
+    
 </Shell>
