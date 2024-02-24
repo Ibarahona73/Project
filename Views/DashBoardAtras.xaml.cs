@@ -7,6 +7,7 @@ public partial class DashBoardAtras : ContentPage
 		InitializeComponent();
         var page = new DashBoardo();
         Navigation.PushAsync(page);
+        
 
     }
 }

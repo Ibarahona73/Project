@@ -13,9 +13,9 @@ public partial class Login : ContentPage
     }
 
 
-    private void OlvidarPassBtn_Clicked(object sender, EventArgs e)
+    private async void OlvidarPassBtn_Clicked(object sender, EventArgs e)
     {
-        
+        await DisplayAlert("Funcion No Implementada", "Esta Funcion No a sido implementada en esta version", "Aceptar");
     }
 
 
