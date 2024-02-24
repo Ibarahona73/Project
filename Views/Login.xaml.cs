@@ -7,6 +7,7 @@ public partial class Login : ContentPage
     public Login()
     {
         InitializeComponent();
+        Contra.IsPassword = true;
         NavigationPage.SetHasNavigationBar(this, false);
 
     }
