@@ -5,7 +5,7 @@
              BackgroundColor="#c2b4e8">
 
 
-    <VerticalStackLayout Margin="0,80,0,0">
+    <VerticalStackLayout>
 
         <Label             
             Text="Sign-In"
@@ -22,12 +22,16 @@
             TranslationY="10"
             HorizontalOptions="CenterAndExpand"/>
 
-        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center"
-                FontSize="16" BackgroundColor="#58068D" TextColor="Gray"/>
+        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center" FontSize="16"/>
 
-        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" HorizontalTextAlignment="Center" 
-                FontSize="16" BackgroundColor="#58068D" TextColor="Gray"/>
+        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" HorizontalTextAlignment="Center" FontSize="16"/>
 
+
+        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" BackgroundColor="#58068D" TextColor="Gray" />
+
+        
+        
+        
         <Button
              x:Name="IngresarBtn"
              Clicked="IngresarBtn_Clicked"
@@ -43,26 +47,20 @@
         <Button
              x:Name="OlvidarPassBtn"
              Clicked="OlvidarPassBtn_Clicked"
-             TextColor="Black"
-             Text="¿Has olvidado tu contraseña?"                                                    
+             TextColor="Aqua"
+             Text="¿Has olvidado tu contraseña?"                                       
+             BackgroundColor="#00000000" 
              FontSize="14"
-             TranslationY="65"
-             CornerRadius="30" 
-             WidthRequest="400" 
-             BorderColor="Purple" 
-             BorderWidth="3" />
-        
+             TranslationY="65"/>
+
         <Button
               x:Name="RegisterBtn"
               Clicked="RegisterBtn_Clicked"
               HorizontalOptions="Fill" 
               Text="Registrarse"                                       
               FontSize="14"
-              TranslationY="75"
-              CornerRadius="30" 
-              WidthRequest="400" />
-
-
+              TranslationY="75"/>
+        
 
     </VerticalStackLayout>
 </ContentPage>

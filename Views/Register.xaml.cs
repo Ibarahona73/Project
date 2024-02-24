@@ -5,35 +5,7 @@ public partial class Register : ContentPage
 	public Register()
 	{
 		InitializeComponent();
-
-        //Actuan al evento TextChanged para cuando estos tengan datos
-        //sus propiedades cambien
-
-        RegNombre.TextChanged += Campos_TextChanged;
-        RegApellido.TextChanged += Campos_TextChanged;
-        RegEmail.TextChanged += Campos_TextChanged;
-        RegContra.TextChanged += Campos_TextChanged;
-        RegPhone.TextChanged += Campos_TextChanged;
-
-        //Deshabilitar el boton si los campos estan vacios
-        Procesar.IsEnabled = false;
-    }
-
-    private void Campos_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        // Verificar si algún campo está vacío
-        if (string.IsNullOrEmpty(RegNombre.Text?.Trim()) || string.IsNullOrEmpty(RegApellido.Text?.Trim()) ||
-            string.IsNullOrEmpty(RegEmail.Text?.Trim()) || string.IsNullOrEmpty(RegContra.Text?.Trim()) ||
-            string.IsNullOrEmpty(RegPhone.Text?.Trim()))
-        {
-            // Si hay campos vacíos, deshabilitar el botón "Procesar"
-            Procesar.IsEnabled = false;
-        }
-        else
-        {
-            // Si todos los campos están llenos, habilitar el botón "Procesar"
-            Procesar.IsEnabled = true;
-        }
+        NavigationPage.SetHasNavigationBar(this, false);
     }
 
 
