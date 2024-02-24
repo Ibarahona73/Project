@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project.Views.Login">
+             x:Class="Project.Views.Login"
+             BackgroundColor="#c2b4e8">
 
 
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="0,80,0,0">
 
         <Label             
             Text="Sign-In"
@@ -21,9 +22,11 @@
             TranslationY="10"
             HorizontalOptions="CenterAndExpand"/>
 
-        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center" FontSize="16"/>
+        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center"
+                FontSize="16" BackgroundColor="#58068D" TextColor="Gray"/>
 
-        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" HorizontalTextAlignment="Center" FontSize="16"/>
+        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" HorizontalTextAlignment="Center" 
+                FontSize="16" BackgroundColor="#58068D" TextColor="Gray"/>
 
         <Button
              x:Name="IngresarBtn"
@@ -31,25 +34,35 @@
              HorizontalOptions="Fill" 
              Text="Ingresar"                                       
              FontSize="14"
-             TranslationY="55"/>
+             TranslationY="55"
+             BackgroundColor="#58068D"
+             CornerRadius="30" 
+             WidthRequest="400" 
+             Margin="0,15,0,0" />
 
         <Button
              x:Name="OlvidarPassBtn"
              Clicked="OlvidarPassBtn_Clicked"
-             TextColor="Aqua"
-             Text="¿Has olvidado tu contraseña?"                                       
-             BackgroundColor="#00000000" 
+             TextColor="Black"
+             Text="¿Has olvidado tu contraseña?"                                                    
              FontSize="14"
-             TranslationY="65"/>
-
+             TranslationY="65"
+             CornerRadius="30" 
+             WidthRequest="400" 
+             BorderColor="Purple" 
+             BorderWidth="3" />
+        
         <Button
               x:Name="RegisterBtn"
               Clicked="RegisterBtn_Clicked"
               HorizontalOptions="Fill" 
               Text="Registrarse"                                       
               FontSize="14"
-              TranslationY="75"/>
-        
+              TranslationY="75"
+              CornerRadius="30" 
+              WidthRequest="400" />
+
+
 
     </VerticalStackLayout>
 </ContentPage>
