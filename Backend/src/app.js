@@ -1,3 +1,5 @@
+
+import express from 'express';
 import express from 'express';
 import { pool } from './db.js';
 import { PORT } from './config.js';
@@ -28,7 +30,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/recordatorio', async (req, res) => {
     const { userId } = req.query;
-    
+
     if (!userId) {
         return res.status(400).json({ error: 'Se requiere el ID de usuario' });
     }
@@ -53,4 +55,8 @@ app.post('/createuser', async (req, res) => {
 });
 
 app.listen(PORT);
+
 console.log('server on port 3000 ', PORT);
+
+console.log('server on port 3000 ', PORT);
+

@@ -5,10 +5,9 @@
              BackgroundColor="#c2b4e8">
 
 
-    <VerticalStackLayout Margin="0,80,0,0">
-        
+    <VerticalStackLayout>
 
-            <Label             
+        <Label             
             Text="Sign-In"
             Style="{StaticResource SubHeadline}"
             VerticalOptions="FillAndExpand" 
@@ -23,14 +22,10 @@
             TranslationY="10"
             HorizontalOptions="CenterAndExpand"/>
 
-
-        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25"  HorizontalTextAlignment="Center" FontSize="16"  BackgroundColor="#58068D" TextColor="Gray" />
-
+        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center" FontSize="16"/>
 
         <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" BackgroundColor="#58068D" TextColor="Gray" />
-
-        
-        
+          
         
         <Button
              x:Name="IngresarBtn"
@@ -47,15 +42,11 @@
         <Button
              x:Name="OlvidarPassBtn"
              Clicked="OlvidarPassBtn_Clicked"
-             TextColor="Black"
+             TextColor="Aqua"
              Text="¿Has olvidado tu contraseña?"                                       
              BackgroundColor="#00000000" 
              FontSize="14"
-             TranslationY="65"
-             CornerRadius="30" 
-             WidthRequest="400" 
-            BorderColor="Purple" 
-            BorderWidth="3" />
+             TranslationY="65"/>
 
         <Button
               x:Name="RegisterBtn"
@@ -63,9 +54,7 @@
               HorizontalOptions="Fill" 
               Text="Registrarse"                                       
               FontSize="14"
-              TranslationY="75"
-              CornerRadius="30" 
-              WidthRequest="400" />
+              TranslationY="75"/>
         
 
     </VerticalStackLayout>

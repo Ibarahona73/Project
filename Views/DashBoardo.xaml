@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.DashBoardo"
              xmlns:local1="clr-namespace:Project.Views"
-             Shell.FlyoutBehavior="Flyout"
+              Shell.FlyoutBehavior="Flyout"
              FlyoutBackgroundColor="#333344"
              Shell.BackgroundColor="#1f1f2f"
              Shell.ForegroundColor="#dcdcdc"
@@ -11,6 +11,7 @@
              Shell.DisabledColor="#b2b2b2"
              Shell.UnselectedColor="#888888"
              Shell.FlyoutHeaderBehavior="Fixed">
+
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -22,7 +23,8 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
-    
+
+
     <Shell.ItemTemplate>
         <DataTemplate>
             <HorizontalStackLayout Padding="5">
@@ -30,72 +32,79 @@
                        FontSize="18"
                        FontAttributes="Bold"
                        Style="{StaticResource FlyoutItemLabelStyle}"
-                       Padding="10,5,10,10"/>
+                       Padding="20,10,20,10"/>
 
                 <Image Source="{Binding FlyoutIcon}"
                        Aspect="AspectFill"
                        HeightRequest="20"
                        WidthRequest="20"
                        HorizontalOptions="End"/>
-                
+
             </HorizontalStackLayout>
         </DataTemplate>
     </Shell.ItemTemplate>
 
     <Shell.FlyoutHeader>
-
         <Grid BackgroundColor="#444455"
                   ColumnDefinitions="Auto,*"
-                  Padding="25">
+                  Padding="40">
 
-                <Label Grid.Column="1"
-                       Text="Memora"
-                       VerticalOptions="Center"
-                       FontSize="28"
+            <Image Grid.Column="1"
+                   Source="logo_nombre_v2.png"
+                   Aspect="AspectFill"
+                   HeightRequest="50" 
+                   WidthRequest="75"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   TranslationY="-5"/>
+
+            <Label Grid.Column="0"
+                       Text="Memora"                       
+                       FontSize="25"
                        FontAttributes="Bold"
-                       TextColor="White"
-                       Margin="15,0,0,0"/>
+                       TextColor="White"                       
+                       VerticalOptions="StartAndExpand"                       
+                       />
 
-                <Image Grid.Column="0"
-                       Source="logo_nombre_v2.png"
-                       Aspect="AspectFill"
-                       HeightRequest="50"
-                       WidthRequest="50"
-                       VerticalOptions="Center"/>
-            </Grid>
-        
+            <Button Text="Cerrar Sesión"                
+                    x:Name="Csesion"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="Csesion_Clicked"
+                    Margin="15"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"                    
+                    TranslationY="45"
+                    TranslationX="-25"/>
+            
+        </Grid>
     </Shell.FlyoutHeader>
-    
-        <ShellContent
+
+    <ShellContent
             Title="Inicio"
             Icon="dotnet_bot.png"
             ContentTemplate="{DataTemplate local1:DashBoardAtras}"
             Route="DashBoardAtras"/>
 
-        <ShellContent
+    <ShellContent
             Title="Imagen"
-            
             ContentTemplate="{DataTemplate local1:Imagen}"
             Route="Imagen"/>
 
-        <ShellContent
+    <ShellContent
             Title="Nota De Voz"
-            
             ContentTemplate="{DataTemplate local1:NotaDeVoz}"
             Route="NotaDeVoz"/>
 
-        <ShellContent
+    <ShellContent
             Title="Nota De Texto"
-            
             ContentTemplate="{DataTemplate local1:NotaTexto}"
             Route="NotaTexto"/>
 
-        <ShellContent
+    <ShellContent
             Title="Lista De Recordatorio"
-            
             ContentTemplate="{DataTemplate local1:ListaRecordatorio}"
             Route="ListaRecordatorio"/>
 
-        
-    
 </Shell>

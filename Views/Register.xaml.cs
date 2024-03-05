@@ -2,46 +2,37 @@ namespace Project.Views;
 
 public partial class Register : ContentPage
 {
-	public Register()
-	{
-		InitializeComponent();
+    public Register()
+    {
+        InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
+        
     }
 
 
     private async void Procesar_Clicked(object sender, EventArgs e)
     {
-        string nombre = RegNombre.Text?.Trim();
-        string apellido = RegApellido.Text?.Trim();
-        string correo = RegEmail.Text.Trim();
-        string contrasena = RegContra.Text?.Trim();
-        string telefono = RegPhone.Text?.Trim();
-
-
         // Verificar si algún campo está vacío
-        if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido) ||
-            string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contrasena) ||
-            string.IsNullOrEmpty(telefono))
+        if (string.IsNullOrWhiteSpace(RegNombre.Text) || string.IsNullOrWhiteSpace(RegApellido.Text) ||
+            string.IsNullOrWhiteSpace(RegEmail.Text) || string.IsNullOrWhiteSpace(RegContra.Text) ||
+            string.IsNullOrWhiteSpace(RegPhone.Text))
         {
             await DisplayAlert("Error", "Por favor, llene todos los campos.", "OK");
-
             return; // Si hay campos vacíos, termina aquí y no continúa con las validaciones.
+        }
 
-        }
-        else
-        {
-            // Si todos los campos están llenos, habilitar el botón "Procesar"
-            Procesar.IsEnabled = true;
-        }
+        // Obtener los valores de los campos
+        string nombre = RegNombre.Text.Trim();
+        string apellido = RegApellido.Text.Trim();
+        string correo = RegEmail.Text.Trim();
+        string contrasena = RegContra.Text.Trim();
+        string telefono = RegPhone.Text.Trim();
 
         // Validar el correo electrónico
         bool esValido = ValidarCorreoElectronico(correo);
 
-
         if (!esValido)
-
         {
-
             await DisplayAlert("Error", "Inserte un correo válido (Gmail, Hotmail, Outlook)", "OK");
             return;
         }
@@ -53,6 +44,7 @@ public partial class Register : ContentPage
             return;
         }
 
+        // Si todos los campos están llenos y las validaciones son exitosas, continuar con el proceso.
 
         // Crear una instancia de la página LoginPage.xaml
         Login loginPage = new Login();
@@ -60,23 +52,20 @@ public partial class Register : ContentPage
         // Obtener el NavigationPage actual
         NavigationPage currentNavigationPage = Application.Current.MainPage as NavigationPage;
 
-
-
         // Verificar si currentNavigationPage no es nulo antes de continuar
         if (currentNavigationPage != null)
         {
             // Navegar a la página LoginPage.xaml sin opción para volver atrás
             await currentNavigationPage.Navigation.PushAsync(loginPage);
         }
-
     }
+
     private bool ValidarCorreoElectronico(string correo)
     {
         // Expresión regular para validar el correo electrónico
         System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook)\.(com|es)$");
         return regex.IsMatch(correo);
     }
-
 
     private bool EsNumero(string str)
     {
@@ -90,4 +79,5 @@ public partial class Register : ContentPage
         // Si se pasó por todos los caracteres y ninguno fue no numérico, devuelve verdadero
         return true;
     }
+
 }
