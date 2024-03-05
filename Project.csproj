@@ -87,8 +87,14 @@
 
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 
-		<PackageReference Include="System.Net.Http.Json" Version="8.0.0"/>
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\OlvContra.xaml.cs">
+	    <DependentUpon>OlvContra.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -111,6 +117,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\NotaTexto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\OlvContra.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Register.xaml">

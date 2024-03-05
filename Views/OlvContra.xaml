@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.OlvContra">
+    
+    <VerticalStackLayout>
+
+        <Label
+            Text="Recuperacion de Contraseña"   
+            FontSize="Title"
+            HorizontalTextAlignment="Center"                
+        />
+        
+        
+        <Image
+            Source="regis.png"             
+            SemanticProperties.Description="Sign Up User!"
+            HeightRequest="200"
+            WidthRequest="200"
+            TranslationY="10"
+            HorizontalOptions="CenterAndExpand"/>   
+
+        <Entry 
+           x:Name="CorreoRes" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text"                    
+           VerticalOptions="Center"
+           HorizontalOptions="Fill"
+           HorizontalTextAlignment="Center"
+           TranslationY="25"
+           FontSize="16"/>
+
+        <Button 
+            x:Name="BtnEnv" 
+            TranslationY="45"
+            Text="Enviar"
+            FontSize="15"
+                />
+
+    </VerticalStackLayout>
+</ContentPage>
