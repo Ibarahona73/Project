@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0.3-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -84,7 +84,11 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0"/>
+
 	</ItemGroup>
 
 	<ItemGroup>

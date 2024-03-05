@@ -1,4 +1,6 @@
-﻿import express from 'express';
+
+import express from 'express';
+import express from 'express';
 import { pool } from './db.js';
 import { PORT } from './config.js';
 
@@ -53,4 +55,8 @@ app.post('/createuser', async (req, res) => {
 });
 
 app.listen(PORT);
+
 console.log('server on port 3000 ', PORT);
+
+console.log('server on port 3000 ', PORT);
+
