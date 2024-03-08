@@ -26,7 +26,7 @@ public partial class RestableceContra : ContentPage
             return;
         }
 
-        // Expresión regular para validar la contraseña
+        /* Expresión regular para validar la contraseña
         string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$";
         System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
 
@@ -34,7 +34,7 @@ public partial class RestableceContra : ContentPage
         {
             await DisplayAlert("Error", "La contraseña no cumple con los requisitos:\nDebe tener al menos 8 caracteres, incluyendo al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.", "OK");
             return;
-        }
+        }*/
 
         // Si todas las validaciones pasan, mostrar un saludo
         await DisplayAlert("Éxito", "¡Hola!", "OK");
