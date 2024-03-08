@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.Views.ValidacionCod"
+             Title="ValidacionCod">
+
+
+    <!--Validacion de codigo-->
+    <!--parte 2/3 para reponer Contraseña-->
+    
+    <VerticalStackLayout>
+
+        <Entry x:Name="CorreoCod" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Fill"
+                  HorizontalTextAlignment="Center"
+                  TranslationY="10"
+                  FontSize="16"/>
+
+
+        <Entry x:Name="CodiRec" Placeholder="Ingrese El Codigo De Recuperacion" Keyboard="Numeric" 
+                    VerticalOptions="Center"
+                     HorizontalOptions="Fill"
+                     HorizontalTextAlignment="Center"
+                     TranslationY="16"
+                     FontSize="16"/>
+
+        <Button 
+            x:Name="BtnEnv" 
+            TranslationY="45"
+            Text="Enviar"
+            FontSize="15"
+            Clicked="BtnEnv_Clicked"
+                />
+    </VerticalStackLayout>
+</ContentPage>
