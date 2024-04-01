@@ -10,12 +10,6 @@
     
     <VerticalStackLayout>
 
-        <Entry x:Name="CorreoCod" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text"
-                  VerticalOptions="Center"
-                  HorizontalOptions="Fill"
-                  HorizontalTextAlignment="Center"
-                  TranslationY="10"
-                  FontSize="16"/>
 
 
         <Entry x:Name="CodiRec" Placeholder="Ingrese El Codigo De Recuperacion" Keyboard="Numeric" 

@@ -1,13 +1,25 @@
-
 import express from 'express';
-import express from 'express';
+import bodyParser from 'body-parser';
 import { pool } from './db.js';
 import { PORT } from './config.js';
+import resetPassword from './Routes/resetPassword.js';
+import newpassword from './Routes/newpassword.js';
+import verificationcod from './Routes/verificationcod.js';
+import savereminders from './Routes/savereminders.js';
+import savenotaaudio from './Routes/savenotaudio.js';
+import saveimager from './Routes/saveimager.js';
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.use(express.json()); 
-
+// Asigna las rutas
+app.use('/sendcod', resetPassword);
+app.use('/verificationcode', verificationcod);
+app.use('/newpassword', newpassword);
+app.use('/',savereminders);
+app.use('/',savenotaaudio);
+app.use('/',saveimager);
 app.get('/', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM Usuarios');
     res.json(rows);
@@ -43,6 +55,7 @@ app.get('/recordatorio', async (req, res) => {
         res.status(500).json({ error: 'Error al obtener las tareas del usuario' });
     }
 });
+
 app.get('/ping', async (req, res) => {
     const [Result] = await pool.query('SELECT "hello world " as RESULT');
     console.log(Result);
@@ -54,9 +67,6 @@ app.post('/createuser', async (req, res) => {
     res.json(Result);
 });
 
-app.listen(PORT);
-
-console.log('server on port 3000 ', PORT);
-
-console.log('server on port 3000 ', PORT);
-
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

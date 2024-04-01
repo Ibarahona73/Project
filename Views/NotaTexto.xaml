@@ -2,11 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.NotaTexto">
-    
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="Contenido de la Nota:" />
+        <Entry x:Name="ContenidoEntry" Placeholder="Ingrese el contenido de la nota" />
+
+        <Label Text="Fecha de Recordatorio:" />
+        <DatePicker x:Name="ReminderDatePicker" />
+
+        
+
+        <Button Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

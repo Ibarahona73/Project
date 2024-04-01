@@ -1,42 +1,91 @@
-namespace Project.Views;
+using System;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
+using Microsoft.Maui.Controls;
 
-public partial class RestableceContra : ContentPage
+namespace Project.Views
 {
-    public RestableceContra()
-    {
-        InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
-    }
+	public partial class RestableceContra : ContentPage
+	{
+		private const string apiUrl = "http://3.129.71.4:3000/newpassword";
+		private string correoRecuperacion;
+		private string codigoRecuperacion;
 
-    private async void BtnEnv_Clicked(object sender, EventArgs e)
-    {
-        string newPassword = NewPass.Text;
-        string confirmPassword = ConfirmPass.Text;
+		public RestableceContra(string email, string codigoRecuperacion)
+		{
+			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
 
-        // Verificar si el campo de contraseña está en blanco
-        if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
-        {
-            await DisplayAlert("Error", "Por favor, ingrese una contraseña.", "OK");
-            return;
-        }
+			this.correoRecuperacion = email;
+			this.codigoRecuperacion = codigoRecuperacion;
+		}
 
-        if (newPassword != confirmPassword)
-        {
-            await DisplayAlert("Error", "Las contraseñas no coinciden", "OK");
-            return;
-        }
+		private async void BtnEnv_Clicked(object sender, EventArgs e)
+		{
+			string newPassword = NewPass.Text;
+			string confirmPassword = ConfirmPass.Text;
 
-        /* Expresión regular para validar la contraseña
-        string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$";
-        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
+			// Verificar si el campo de contraseña está en blanco
+			if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+			{
+				await DisplayAlert("Error", "Por favor, ingrese una contraseña.", "OK");
+				return;
+			}
 
-        if (!regex.IsMatch(newPassword))
-        {
-            await DisplayAlert("Error", "La contraseña no cumple con los requisitos:\nDebe tener al menos 8 caracteres, incluyendo al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.", "OK");
-            return;
-        }*/
+			if (newPassword != confirmPassword)
+			{
+				await DisplayAlert("Error", "Las contraseñas no coinciden", "OK");
+				return;
+			}
 
-        // Si todas las validaciones pasan, mostrar un saludo
-        await DisplayAlert("Éxito", "¡Hola!", "OK");
-    }
+			try
+			{
+				using (HttpClient client = new HttpClient())
+				{
+					// Crear el objeto JSON con las claves "Email", "codigo_recuperacion" y "nuevaContrasena"
+					var jsonObject = new
+					{
+						Email = correoRecuperacion,
+						codigo_recuperacion = codigoRecuperacion,
+						nuevaContrasena = newPassword
+					};
+
+					// Serializar el objeto JSON utilizando Newtonsoft.Json
+					var json = JsonConvert.SerializeObject(jsonObject);
+					var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+					// Enviar la solicitud PUT a la API con la ruta correcta
+					HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+					if (response.IsSuccessStatusCode)
+					{
+						// Procesar la respuesta si la solicitud fue exitosa
+						string responseContent = await response.Content.ReadAsStringAsync();
+
+						// Parsear la respuesta JSON para obtener el mensaje de la API
+						dynamic responseData = JsonConvert.DeserializeObject(responseContent);
+						string mensaje = responseData.message;
+
+						await DisplayAlert("Mensaje de la API", mensaje, "OK");
+
+						// Navegar a la página de inicio de sesión (LoginPage)
+						await Navigation.PopToRootAsync(); // Para volver a la página de inicio
+					}
+					else
+					{
+						// Mostrar mensaje si la solicitud no fue exitosa
+						await DisplayAlert("Error", "No se pudo actualizar la contraseña.", "OK");
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Manejar cualquier excepción que pueda ocurrir durante la solicitud
+				await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+			}
+		}
+
+	}
+
 }
