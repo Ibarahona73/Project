@@ -68,6 +68,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <Compile Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <EmbeddedResource Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <MauiCss Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <MauiXaml Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <None Remove="Platforms\Android\Resources\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\logo_nombre_v2.png" />
 	</ItemGroup>
 
@@ -90,6 +99,8 @@
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+
+		<PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
 
 	</ItemGroup>
 
@@ -133,6 +144,10 @@
 	  <MauiXaml Update="Views\ValidacionCod.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\NewFolder\" />
 	</ItemGroup>
 
 	<ProjectExtensions>

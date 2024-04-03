@@ -21,7 +21,6 @@ Router.post("/crearnotasvoz", async (req, res) => {
   }
 });
 
-// GET para obtener las notas de voz para un usuario específico
 Router.get("/notasvoz/:id_usuario", async (req, res) => {
   const { id_usuario } = req.params;
 
@@ -40,4 +39,5 @@ Router.get("/notasvoz/:id_usuario", async (req, res) => {
   }
 });
 
-export default Router;
+export default Router;;
+
