@@ -10,8 +10,6 @@
         <Label Text="Fecha de Recordatorio:" />
         <DatePicker x:Name="ReminderDatePicker" />
 
-        
-
         <Button Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" />
     </VerticalStackLayout>
 </ContentPage>
