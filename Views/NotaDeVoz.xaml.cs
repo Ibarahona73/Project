@@ -33,6 +33,7 @@ namespace Project.Views
 
 		private async void Grabar_Clicked(object sender, EventArgs e)
 		{
+			micro.Source = "mic_on.png";
 			var status = await Permissions.CheckStatusAsync<Permissions.Microphone>();
 			if (status != PermissionStatus.Granted)
 			{
@@ -53,7 +54,8 @@ namespace Project.Views
 
 		private async void Stop_Clicked(object sender, EventArgs e)
 		{
-			await recorder.StopRecording();
+			micro.Source = "mic_off.png";
+            await recorder.StopRecording();
 			filePath = recorder.GetAudioFilePath();
 			audi = ConvertAudioToBase64(filePath);
 			Grabar.IsEnabled = true;
@@ -80,22 +82,27 @@ namespace Project.Views
 
 		private async void GDatos_Clicked(object sender, EventArgs e)
 		{
-			if (audi == null || audi.Length == 0)
+            DateTime fechaYHoraSeleccionada;
+
+
+            if (audi == null || audi.Length == 0)
 			{
 				await DisplayAlert("Error", "No se grabó ningún audio", "OK");
 				return;
 			}
 
 			DateTime fechaSeleccionada = Recuerdo.Date;
-			DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
+            TimeSpan horaSeleccionada = RecuerdoTime.Time;
+            DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
+            fechaYHoraSeleccionada = fechaSeleccionada.Date + horaSeleccionada;
 
-			try
+            try
 			{
 				var notaDeVoz = new
 				{
 					rutaArchivo = Convert.ToBase64String(audi),
-					reminderDate = soloFecha,
-					tiporecordatorio = 1,
+					reminderDate = fechaYHoraSeleccionada,
+                    tiporecordatorio = 1,
 					id_usuario = 1
 				};
 
