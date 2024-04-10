@@ -83,7 +83,20 @@ namespace Project.Views
 		private async void GDatos_Clicked(object sender, EventArgs e)
 		{
             DateTime fechaYHoraSeleccionada;
+			int estado;
+			string hola;
 
+			if (switche.IsToggled) {
+
+				estado = 1;
+				Console.WriteLine(estado);
+			}
+			else
+			{
+                estado = 0;
+                Console.WriteLine(estado);
+            }
+			
 
             if (audi == null || audi.Length == 0)
 			{
@@ -93,7 +106,8 @@ namespace Project.Views
 
 			DateTime fechaSeleccionada = Recuerdo.Date;
             TimeSpan horaSeleccionada = RecuerdoTime.Time;
-            DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
+            //DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
+
             fechaYHoraSeleccionada = fechaSeleccionada.Date + horaSeleccionada;
 
             try
@@ -102,11 +116,15 @@ namespace Project.Views
 				{
 					rutaArchivo = Convert.ToBase64String(audi),
 					reminderDate = fechaYHoraSeleccionada,
-                    tiporecordatorio = 1,
-					id_usuario = 1
+					tiporecordatorio = 1,
+					id_usuario = Preferences.Get("UserId", defaultValue: 0),
+					//hola = estado.ToString(),
+										
+					
 				};
+                Console.WriteLine(estado);
 
-				var json = JsonConvert.SerializeObject(notaDeVoz);
+                var json = JsonConvert.SerializeObject(notaDeVoz);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 				using (var client = new HttpClient())
