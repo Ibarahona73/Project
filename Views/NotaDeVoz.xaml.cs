@@ -96,7 +96,7 @@ namespace Project.Views
 					rutaArchivo = Convert.ToBase64String(audi),
 					reminderDate = soloFecha,
 					tiporecordatorio = 1,
-					id_usuario = 1
+					id_usuario = Preferences.Get("UserId", defaultValue: 0)
 				};
 
 				var json = JsonConvert.SerializeObject(notaDeVoz);

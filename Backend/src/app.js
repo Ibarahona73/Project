@@ -63,7 +63,7 @@ app.get('/ping', async (req, res) => {
 });
 
 app.post('/createuser', async (req, res) => {
-    const Result = await pool.query('INSERT INTO Usuarios(NombreUsuario,Password,NombreCompleto,Email) VALUES ("Saint","123456","Anthony Saint Hernandez","anthony@gmail.com")');
+    const Result = await pool.query('INSERT INTO Usuarios(NombreUsuario,Password,NombreCompleto,Email) VALUES ("?","?","?","?")');
     res.json(Result);
 });
 

@@ -1,144 +1,85 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using Newtonsoft.Json;
-
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 
 namespace Project.Views
 {
-	public partial class ListaRecordatorio : ContentPage, INotifyPropertyChanged
+	public partial class ListaRecordatorio : ContentPage
 	{
-		private ObservableCollection<RecordatorioItem> _imagenes;
-		private ObservableCollection<RecordatorioItem> _audios;
-		private ObservableCollection<RecordatorioItem> _otros;
-
-		public ObservableCollection<RecordatorioItem> Imagenes
-		{
-			get { return _imagenes; }
-			set
-			{
-				_imagenes = value;
-				OnPropertyChanged(nameof(Imagenes));
-			}
-		}
-
-		public ObservableCollection<RecordatorioItem> Audios
-		{
-			get { return _audios; }
-			set
-			{
-				_audios = value;
-				OnPropertyChanged(nameof(Audios));
-			}
-		}
-
-		public ObservableCollection<RecordatorioItem> Otros
-		{
-			get { return _otros; }
-			set
-			{
-				_otros = value;
-				OnPropertyChanged(nameof(Otros));
-			}
-		}
+		public List<RecordatorioImagenModel> Recordatorios { get; set; }
 
 		public ListaRecordatorio()
 		{
 			InitializeComponent();
-			NavigationPage.SetHasNavigationBar(this, false);
+			BindingContext = this;
+			Recordatorios = new List<RecordatorioImagenModel>();
 
-			Imagenes = new ObservableCollection<RecordatorioItem>();
-			Audios = new ObservableCollection<RecordatorioItem>();
-			Otros = new ObservableCollection<RecordatorioItem>();
-
-			this.Appearing += async (sender, args) =>
-			{
-				await ObtenerRecordatorios();
-			};
+			MostrarRecordatoriosConImagenes();
 		}
 
-		private async Task ObtenerRecordatorios()
+		private async void MostrarRecordatoriosConImagenes()
 		{
 			try
 			{
-				var idUsuario = 1; // Cambiar por el ID del usuario
+				HttpClient client = new HttpClient();
+				var response = await client.GetAsync("http://3.129.71.4:3000/recordatorios-con-imagenes/1");
+				response.EnsureSuccessStatusCode();
 
-				using (var client = new HttpClient())
-				{
-					var url = $"http://3.129.71.4:3000/recordatorios/{idUsuario}";
-					var response = await client.GetAsync(url);
+				var responseBody = await response.Content.ReadAsStringAsync();
+				Recordatorios = JsonSerializer.Deserialize<List<RecordatorioImagenModel>>(responseBody);
 
-					if (response.IsSuccessStatusCode)
-					{
-						var content = await response.Content.ReadAsStringAsync();
-						Console.WriteLine("Contenido de la respuesta:");
-						Console.WriteLine(content);
-
-						var recordatorios = JsonConvert.DeserializeObject<List<RecordatorioItem>>(content);
-
-						Imagenes.Clear();
-						Audios.Clear();
-						Otros.Clear();
-
-						foreach (var recordatorio in recordatorios)
-						{
-							switch (recordatorio.Tipo.ToLowerInvariant())
-							{
-								case "imagen":
-									Imagenes.Add(recordatorio);
-									break;
-								case "audio":
-									Audios.Add(recordatorio);
-									break;
-								default:
-									Otros.Add(recordatorio);
-									break;
-							}
-						}
-					}
-					else
-					{
-						Console.WriteLine($"Respuesta del servidor: {response.StatusCode} - {response.ReasonPhrase}");
-					}
-				}
+				// Notificar al ListView que la colección ha cambiado
+				OnPropertyChanged(nameof(Recordatorios));
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine($"Error al obtener los recordatorios: {ex.Message}");
+				Console.WriteLine($"Error al obtener los recordatorios con imágenes: {ex.Message}");
 			}
 		}
 
-
-		public class RecordatorioItem
+		public class RecordatorioImagenModel
 		{
-			public string Tipo { get; set; }
-			public string RutaArchivo { get; set; }
+			public RutaArchivoModel RutaArchivo { get; set; }
 			public string Description { get; set; }
 			public DateTime ReminderDate { get; set; }
-			// Agrega más propiedades según los datos que quieras mostrar
-
-			public string Detalle
-			{
-				get
-				{
-					// Construir el detalle que quieres mostrar en la lista
-					if (!string.IsNullOrEmpty(Description))
-					{
-						return $"{Description} - {ReminderDate}";
-					}
-					else
-					{
-						return $"{RutaArchivo} - {ReminderDate}";
-					}
-				}
-			}
+			public int TipoRecordatorio { get; set; }
+			public DateTime CreateDate { get; set; }
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		protected virtual void OnPropertyChanged(string propertyName)
+		public class RutaArchivoModel
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			public string Type { get; set; }
+			public byte[] Data { get; set; }
+		}
+	}
+
+	public class Base64ToImageConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			if (value is byte[] imageData)
+			{
+				try
+				{
+					// Convertir byte[] a ImageSource
+					ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+					return imageSource;
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine($"Error al convertir imagen: {ex.Message}");
+					return null;
+				}
+			}
+			return null;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
