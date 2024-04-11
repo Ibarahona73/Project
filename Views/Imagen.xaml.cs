@@ -52,17 +52,33 @@ namespace Project.Views
 
 		private async void CrearImagen_Clicked(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(imagePath))
+            DateTime fechaYHoraSeleccionada;
+            int estado;
+
+            if (switche.IsToggled)
+            {
+
+                estado = 1;
+                Console.WriteLine(estado);
+            }
+            else
+            {
+                estado = 0;
+                Console.WriteLine(estado);
+            }
+
+            if (string.IsNullOrWhiteSpace(imagePath))
 			{
 				await DisplayAlert("Error", "Por favor seleccione una imagen", "Aceptar");
 				return;
 			}
 
-			string descripcion = DescripcionEntry.Text;
-			DateTime reminderDate = ReminderDatePicker.Date;
-			const int tipoRecordatorio = 1; // Valor fijo para tipo de recordatorio
+            string descripcion = DescripcionEntry.Text;
+            DateTime fechaSeleccionada = Recuerdo.Date;
+            TimeSpan horaSeleccionada = RecuerdoTime.Time;
+            fechaYHoraSeleccionada = fechaSeleccionada.Date + horaSeleccionada;
 
-			try
+            try
 			{
 				// Leer el contenido del archivo como un arreglo de bytes
 				byte[] imageData = File.ReadAllBytes(imagePath);
@@ -72,12 +88,12 @@ namespace Project.Views
 
 				var nuevaImagen = new
 				{
-					rutaArchivo = imageDataBase64, // Enviar la imagen como Base64
-					description = descripcion,
-					reminderDate,
-					tiporecordatorio = tipoRecordatorio,
-					id_usuario = Preferences.Get("UserId", defaultValue: 0)
-				};
+                    rutaArchivo = imageDataBase64, // Enviar la imagen como Base64
+                    description = descripcion,
+                    reminderDate = fechaYHoraSeleccionada,
+                    tiporecordatorio = 1,
+                    id_usuario = Preferences.Get("UserId", defaultValue: 0)
+                };
 
 				var json = JsonSerializer.Serialize(nuevaImagen);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -91,12 +107,13 @@ namespace Project.Views
 
 					await DisplayAlert("Éxito", result.message, "Aceptar");
 
-					// Limpiar campos después de crear la imagen
-					DescripcionEntry.Text = string.Empty;
-					ReminderDatePicker.Date = DateTime.Today;
-					ImagenPreview.Source = null;
-					imagePath = null;
-				}
+                    // Limpiar campos después de crear la imagen
+                    DescripcionEntry.Text = string.Empty;
+                    Recuerdo.Date = DateTime.Today;
+                    RecuerdoTime.Time = TimeSpan.Zero;
+                    ImagenPreview.Source = null;
+                    imagePath = null;
+                }
 				else
 				{
 					await DisplayAlert("Error", $"Ocurrió un error al crear la imagen", "Aceptar");

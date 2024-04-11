@@ -14,11 +14,33 @@
         <Entry x:Name="DescripcionEntry" Placeholder="Descripción de la imagen" />
 
         <!-- DatePicker para la fecha de recordatorio -->
-        <DatePicker x:Name="ReminderDatePicker" Margin="0,10" />
+        <DatePicker x:Name="Recuerdo" Margin="0,10" />
+
+        <!-- DatePicker para la fecha de recordatorio -->
+        <TimePicker x:Name="RecuerdoTime" Margin="0,10" />
+
+        <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche">
+            <Switch.Resources>
+                <Style TargetType="Switch">
+                    <Style.Triggers>
+                        <Trigger TargetType="Switch" Property="IsToggled" Value="True">
+                            <Setter Property="ThumbColor"
+                            Value="LightGreen"/>
+                        </Trigger>
+
+                        <Trigger TargetType="Switch" Property="IsToggled" Value="False">
+                            <Setter Property="ThumbColor"
+                                    Value="Red"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+                </Style>
+            </Switch.Resources>
+        </Switch>
 
         <!-- Botón para tomar foto -->
-        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" Margin="0,20,0,10" />
-
+        <Button Text="Tomar Foto" Clicked="TomarFoto_Clicked" Margin="0,20,0,10"/>
+        
         <!-- Vista previa de la imagen -->
         <Image x:Name="ImagenPreview" HeightRequest="200" Margin="0,10" />
 
