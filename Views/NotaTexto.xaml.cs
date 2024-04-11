@@ -102,9 +102,22 @@ namespace Project.Views
 			}
 		}
 
+        private async void switche_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (switche.IsToggled)
+            {
+
+                await DisplayAlert("Estado: ", "\tActivo \n Nota De Voz", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Estado: ", "\tDesactivado \n Nota De Voz", "OK");
+            }
 
 
-		public class ApiResponse
+        }
+
+        public class ApiResponse
 		{
 			public string message { get; set; }
 		}
