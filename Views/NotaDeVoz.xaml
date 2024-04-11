@@ -5,10 +5,10 @@
 
     <VerticalStackLayout>
 
-        <Image Source="mic_off.png" WidthRequest="75" HeightRequest="75" Margin="5,5,5,40" Grid.Row="0" TranslationY="30" x:Name="micro"/>
+        <Image Source="mic_off.png" WidthRequest="75" HeightRequest="75" Margin="5,5,5,40" Grid.Row="0" TranslationY="30" x:Name="micro" />
 
 
-        <Button x:Name="Grabar" Text="Grabar" Clicked="Grabar_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" HeightRequest="10" CornerRadius="20"/>
+        <Button x:Name="Grabar" Text="Grabar" Clicked="Grabar_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20" />
         <Button x:Name="Stop" Text="Stop" Clicked="Stop_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20"/>
         <Button x:Name="rep" Text="Play"   Clicked="rep_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20"/>
 
