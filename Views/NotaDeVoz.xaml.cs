@@ -51,6 +51,7 @@ namespace Project.Views
 				Stop.IsEnabled = true;
 			}
 		}
+		
 
 		private async void Stop_Clicked(object sender, EventArgs e)
 		{
@@ -149,5 +150,20 @@ namespace Project.Views
 				await DisplayAlert("Error", $"Se produjo un error al agregar la nota de voz: {ex.Message}", "OK");
 			}
 		}
-	}
+
+        private async void switche_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (switche.IsToggled)
+            {
+
+                await DisplayAlert("Estado: ", "\tActivo \n Nota De Voz", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Estado: ", "\tDesactivado \n Nota De Voz", "OK");
+            }
+            
+
+        }
+    }
 }
