@@ -81,7 +81,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\codigo.png" />
+	  <None Remove="Resources\Images\gallery.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\logoo.png" />
 	  <None Remove="Resources\Images\logo_nombre_v2.png" />
+	  <None Remove="Resources\Images\logo_nombre_v3.png" />
+	  <None Remove="Resources\Images\notas.png" />
+	  <None Remove="Resources\Images\recontra.png" />
+	  <None Remove="Resources\Images\recordatorio.png" />
+	  <None Remove="Resources\Images\salir.png" />
+	  <None Remove="Resources\Images\user.png" />
+	  <None Remove="Resources\Images\voice.png" />
 	  <None Remove="Resources\Splash\logo_nombre_v2.png" />
 	</ItemGroup>
 
