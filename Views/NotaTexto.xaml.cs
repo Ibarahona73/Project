@@ -114,7 +114,6 @@ namespace Project.Views
                 await DisplayAlert("Estado: ", "\tDesactivado \n Nota De Voz", "OK");
             }
 
-
         }
 
         public class ApiResponse

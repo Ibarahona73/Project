@@ -33,9 +33,11 @@
        
         <Button x:Name="GDatos" Text="Guardar" Clicked="GDatos_Clicked" HorizontalOptions="FillAndExpand"/>
 
-        <Label Text="Estado: " TextColor="Cyan" FontSize="16" Margin="15,15,5,5" FontAttributes="Bold"/>
+        <Label Text="Activar Recordatorio: " TextColor="Cyan" FontSize="16" Margin="15,15,5,5" FontAttributes="Bold"/>
 
-        <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche" TranslationY="-37" Toggled="switche_Toggled">
+        <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche" TranslationY="-37"
+                Toggled="switche_Toggled">
+            
             <Switch.Resources>
                 <Style TargetType="Switch">
                     <Style.Triggers>

@@ -37,8 +37,11 @@
 
 
         <StackLayout Grid.Row="2"  Padding="25" Spacing="120" Orientation="Horizontal" >
-            <Label Text="Activar recordatorio:" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15" />
-            <Switch HorizontalOptions="FillAndExpand"  IsToggled="False"  x:Name="switche"  Toggled="switche_Toggled">
+            <Label Text="Activar recordatorio:" FontAttributes="Bold" FontSize="16" TranslationX="5" TranslationY="-15"/>
+
+            <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche" TranslationY="-27" TranslationX="-15" 
+                    Toggled="switche_Toggled">
+                
                 <Switch.Resources>
                     <Style TargetType="Switch">
                         <Style.Triggers>
