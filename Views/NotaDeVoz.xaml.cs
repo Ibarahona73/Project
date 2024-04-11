@@ -33,6 +33,7 @@ namespace Project.Views
 
 		private async void Grabar_Clicked(object sender, EventArgs e)
 		{
+			micro.Source = "mic_on.png";
 			var status = await Permissions.CheckStatusAsync<Permissions.Microphone>();
 			if (status != PermissionStatus.Granted)
 			{
@@ -50,10 +51,12 @@ namespace Project.Views
 				Stop.IsEnabled = true;
 			}
 		}
+		
 
 		private async void Stop_Clicked(object sender, EventArgs e)
 		{
-			await recorder.StopRecording();
+			micro.Source = "mic_off.png";
+            await recorder.StopRecording();
 			filePath = recorder.GetAudioFilePath();
 			audi = ConvertAudioToBase64(filePath);
 			Grabar.IsEnabled = true;
@@ -80,26 +83,49 @@ namespace Project.Views
 
 		private async void GDatos_Clicked(object sender, EventArgs e)
 		{
-			if (audi == null || audi.Length == 0)
+            DateTime fechaYHoraSeleccionada;
+			int estado;
+			string hola;
+
+			if (switche.IsToggled) {
+
+				estado = 1;
+				Console.WriteLine(estado);
+			}
+			else
+			{
+                estado = 0;
+                Console.WriteLine(estado);
+            }
+			
+
+            if (audi == null || audi.Length == 0)
 			{
 				await DisplayAlert("Error", "No se grabó ningún audio", "OK");
 				return;
 			}
 
 			DateTime fechaSeleccionada = Recuerdo.Date;
-			DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
+            TimeSpan horaSeleccionada = RecuerdoTime.Time;
+            //DateTime soloFecha = new DateTime(fechaSeleccionada.Year, fechaSeleccionada.Month, fechaSeleccionada.Day);
 
-			try
+            fechaYHoraSeleccionada = fechaSeleccionada.Date + horaSeleccionada;
+
+            try
 			{
 				var notaDeVoz = new
 				{
 					rutaArchivo = Convert.ToBase64String(audi),
-					reminderDate = soloFecha,
+					reminderDate = fechaYHoraSeleccionada,
 					tiporecordatorio = 1,
-					id_usuario = 1
+					id_usuario = Preferences.Get("UserId", defaultValue: 0),
+					//hola = estado.ToString(),
+										
+					
 				};
+                Console.WriteLine(estado);
 
-				var json = JsonConvert.SerializeObject(notaDeVoz);
+                var json = JsonConvert.SerializeObject(notaDeVoz);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 				using (var client = new HttpClient())
@@ -124,5 +150,20 @@ namespace Project.Views
 				await DisplayAlert("Error", $"Se produjo un error al agregar la nota de voz: {ex.Message}", "OK");
 			}
 		}
-	}
+
+        private async void switche_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (switche.IsToggled)
+            {
+
+                await DisplayAlert("Estado: ", "\tActivo \n Nota De Voz", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Estado: ", "\tDesactivado \n Nota De Voz", "OK");
+            }
+            
+
+        }
+    }
 }
