@@ -22,9 +22,11 @@
             TranslationY="10"
             HorizontalOptions="CenterAndExpand"/>
 
-        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" HorizontalTextAlignment="Center" FontSize="16"/>
+        <Entry  x:Name="Email" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" TranslationY="25" 
+                HorizontalTextAlignment="Center" FontSize="16"/>
 
-        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" BackgroundColor="#58068D" TextColor="Gray" />
+        <Entry  x:Name="Contra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" TranslationY="35" VerticalOptions="Center" 
+                HorizontalTextAlignment="Center" FontSize="16" BackgroundColor="#58068D" TextColor="Gray" IsPassword="True"/>
           
         
         <Button
