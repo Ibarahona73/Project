@@ -1,21 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.ListaRecordatorio">
-    <ContentPage.Content>
-        <ListView ItemsSource="{Binding Recordatorios}">
-            <ListView.ItemTemplate>
+    <StackLayout>
+        <!-- Lista para mostrar las imágenes -->
+        <CollectionView ItemsSource="{Binding Imagenes}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Image Source="{Binding RutaArchivo, Converter={StaticResource Base64ToImageConverter}}" />
-                            <Label Text="{Binding Description}" FontAttributes="Bold" />
-                            <Label Text="{Binding ReminderDate, StringFormat='Fecha de Recordatorio: {0:g}'}" />
-                            <Label Text="{Binding TipoRecordatorio, StringFormat='Tipo de Recordatorio: {0}'}" />
-                            <Label Text="{Binding CreateDate, StringFormat='Fecha de Creación: {0:g}'}" />
-                        </StackLayout>
-                    </ViewCell>
+                    <Image Source="{Binding RutaArchivo}" 
+                           HeightRequest="200"
+                           Aspect="AspectFit"/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage.Content>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Lista para mostrar los archivos de audio -->
+        <CollectionView ItemsSource="{Binding Audios}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding RutaArchivo}" />
+                    <!-- Puedes añadir un botón o icono para reproducir el audio -->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Lista para mostrar otros tipos de recordatorios -->
+        <CollectionView ItemsSource="{Binding Otros}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Tipo}" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Detalle}" FontSize="14" />
+                        <Label Text="{Binding ReminderDate, StringFormat='Fecha de Recordatorio: {0:d}'}" FontSize="12" />
+                        <!-- Agrega más Labels según los datos que quieras mostrar -->
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
