@@ -3,13 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.NotaTexto">
 
-    <VerticalStackLayout>
-        <Label Text="Contenido de la Nota:" />
-        <Entry x:Name="ContenidoEntry" Placeholder="Ingrese el contenido de la nota" />
 
-        <Label Text="Fecha de Recordatorio:" />
-        <DatePicker x:Name="ReminderDatePicker" />
 
-        <Button Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" />
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Icono -->
+        <Image Grid.Row="0" Source="not.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="480" HeightRequest="160" TranslationX="3" TranslationY="5" />
+
+        <!-- Contenido de la Nota -->
+        <StackLayout Grid.Row="1" Padding="25" Spacing="15">
+            
+            <Label Text="Contenido de la Nota:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15" />
+            
+            <Frame BackgroundColor="White" CornerRadius="5" Padding="5" >
+                <Editor x:Name="ContenidoEntry" Placeholder="Ingrese el Contenido de la Nota" HeightRequest="100" />
+            </Frame>
+
+            <Label Text="Fecha de Recordatorio:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15"/>
+            <DatePicker x:Name="Recuerdo"/>
+
+            <Label Text="Hora de Recordatorio:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15"/>
+            <TimePicker x:Name="RecuerdoTime" />
+        </StackLayout>
+
+        <!-- Activar recordatorio -->
+
+
+        <StackLayout Grid.Row="2"  Padding="25" Spacing="120" Orientation="Horizontal" >
+            <Label Text="Activar recordatorio:" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15" />
+            <Switch HorizontalOptions="FillAndExpand"  IsToggled="False"  x:Name="switche"  Toggled="switche_Toggled">
+                <Switch.Resources>
+                    <Style TargetType="Switch">
+                        <Style.Triggers>
+                            <Trigger TargetType="Switch" Property="IsToggled" Value="True">
+                                <Setter Property="ThumbColor"
+                     Value="LightGreen"/>
+                            </Trigger>
+
+                            <Trigger TargetType="Switch" Property="IsToggled" Value="False">
+                                <Setter Property="ThumbColor"
+                             Value="Red"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Switch.Resources>
+            </Switch>
+
+        </StackLayout>
+
+        <!-- Botón de Crear Nota -->
+        <Button Grid.Row="3" Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" BackgroundColor="#0077B6" Margin="12"  FontAttributes="Bold" />
+    </Grid>
+    
 </ContentPage>

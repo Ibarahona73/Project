@@ -20,26 +20,50 @@ namespace Project.Views
 
 		private async void CrearNota_Clicked(object sender, EventArgs e)
 		{
-			string contenido = ContenidoEntry.Text;
-			DateTime reminderDate = ReminderDatePicker.Date;
-			const int tipoRecordatorio = 1; // Valor fijo para tipo de recordatorio
-			
-			if (string.IsNullOrWhiteSpace(contenido))
+            string contenido = ContenidoEntry.Text;
+            DateTime fechaYHoraSeleccionada; int estado;
+            string hola;
+
+            if(switche.IsToggled)
+            {
+
+                estado = 1;
+                hola = estado.ToString();
+                Console.WriteLine(estado);
+            }
+            else
+            {
+                estado = 0;
+                hola = estado.ToString();
+                Console.WriteLine(estado);
+            }
+
+            const int tipoRecordatorio = 1; // Valor fijo para tipo de recordatorio
+
+            if (string.IsNullOrWhiteSpace(contenido))
 			{
 				await DisplayAlert("Error", "Por favor ingrese el contenido de la nota", "Aceptar");
 				return;
 			}
 
-			var nuevaNota = new
-			{
-				contenido,
-				reminderDate,
-				tipoderecordatorio = tipoRecordatorio,
-				id_usuario = Preferences.Get("UserId", defaultValue: 0)
-				
-			};
+            DateTime fechaSeleccionada = Recuerdo.Date;
+            TimeSpan horaSeleccionada = RecuerdoTime.Time;
 
-			try
+            fechaYHoraSeleccionada = fechaSeleccionada.Date + horaSeleccionada;
+
+            var nuevaNota = new
+			{
+                contenido,
+                reminderDate = fechaYHoraSeleccionada,
+                tipoderecordatorio = tipoRecordatorio,
+                estado = hola,
+                id_usuario = Preferences.Get("UserId", defaultValue: 0),
+
+            };
+
+            Console.WriteLine(estado);
+
+            try
 			{
 				var json = JsonSerializer.Serialize(nuevaNota);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -53,10 +77,16 @@ namespace Project.Views
 
 					await DisplayAlert("Éxito", result.message, "Aceptar");
 
-					// Limpiar campos después de crear la nota
-					ContenidoEntry.Text = string.Empty;
-					ReminderDatePicker.Date = DateTime.Today;
-				}
+                    // Limpiar campos después de crear la nota
+                    ContenidoEntry.Text = string.Empty;
+                    Recuerdo.Date = DateTime.Today; // Establecer la fecha en la fecha actual
+                    RecuerdoTime.Time = TimeSpan.Zero; // Establecer la hora en 00:00:00
+
+                    // Limpiar el estado del Switch
+                    switche.IsToggled = false; // Opcionalmente, puedes establecerlo en false para limpiar su estado
+
+
+                }
 				else
 				{
 					await DisplayAlert("Error", "Ocurrió un error al crear la nota de texto", "Aceptar");
