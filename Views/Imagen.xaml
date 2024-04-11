@@ -19,6 +19,8 @@
         <!-- DatePicker para la fecha de recordatorio -->
         <TimePicker x:Name="RecuerdoTime" Margin="0,10" />
 
+        <Label Text="Activar Recordatorio" FontSize="20" HorizontalOptions="Center" Margin="0,20,0,10"/>
+        
         <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche">
             <Switch.Resources>
                 <Style TargetType="Switch">

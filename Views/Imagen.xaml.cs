@@ -54,18 +54,21 @@ namespace Project.Views
 		{
             DateTime fechaYHoraSeleccionada;
             int estado;
+            string hola;
 
             if (switche.IsToggled)
             {
 
                 estado = 1;
+                hola = estado.ToString();
                 Console.WriteLine(estado);
             }
             else
             {
                 estado = 0;
+                hola = estado.ToString();
                 Console.WriteLine(estado);
-            }
+            }           
 
             if (string.IsNullOrWhiteSpace(imagePath))
 			{
@@ -92,10 +95,13 @@ namespace Project.Views
                     description = descripcion,
                     reminderDate = fechaYHoraSeleccionada,
                     tiporecordatorio = 1,
+                    estado = hola,
                     id_usuario = Preferences.Get("UserId", defaultValue: 0)
                 };
 
-				var json = JsonSerializer.Serialize(nuevaImagen);
+                Console.WriteLine(hola);
+
+                var json = JsonSerializer.Serialize(nuevaImagen);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 				var response = await client.PostAsync($"{BaseUrl}crearimagen", content);
@@ -129,8 +135,23 @@ namespace Project.Views
 			}
 		}
 
+        private async void switche_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (switche.IsToggled)
+            {
 
-		public class ApiResponse
+                await DisplayAlert("Estado: ", "\tActivo \n Nota De Voz", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Estado: ", "\tDesactivado \n Nota De Voz", "OK");
+            }
+
+
+        }
+
+
+        public class ApiResponse
 		{
 			public string message { get; set; }
 		}
