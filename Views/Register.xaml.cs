@@ -1,83 +1,118 @@
-namespace Project.Views;
+using Microsoft.Maui.Controls;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-public partial class Register : ContentPage
+namespace Project.Views
 {
-    public Register()
-    {
-        InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
-        
-    }
+	public partial class Register : ContentPage
+	{
+		private readonly HttpClient _httpClient;
+
+		public Register()
+		{
+			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
+			_httpClient = new HttpClient();
+		}
+
+		private async void Procesar_Clicked(object sender, EventArgs e)
+		{
+			// Verificar si algún campo está vacío
+			if (string.IsNullOrWhiteSpace(RegNombre.Text) ||
+				string.IsNullOrWhiteSpace(NombreCompleto.Text) ||
+				string.IsNullOrWhiteSpace(RegEmail.Text) ||
+				string.IsNullOrWhiteSpace(RegContra.Text))
+			{
+				await DisplayAlert("Error", "Por favor, llene todos los campos.", "OK");
+				return;
+			}
+
+			// Obtener los valores de los campos
+			string nombre = RegNombre.Text.Trim();
+			string apellido = NombreCompleto.Text.Trim();
+			string correo = RegEmail.Text.Trim();
+			string contrasena = RegContra.Text.Trim();
+
+			// Validar el correo electrónico
+			if (!ValidarCorreoElectronico(correo))
+			{
+				await DisplayAlert("Error", "Inserte un correo válido (Gmail, Hotmail, Outlook)", "OK");
+				return;
+			}
+
+			// Llamar a la API para crear el usuario
+			bool success = await CreateUser(nombre, apellido, correo, contrasena);
+
+			if (success)
+			{
+				await DisplayAlert("Éxito", "Usuario creado correctamente.", "OK");
+				// Aquí puedes navegar a otra página, por ejemplo, la página de inicio de sesión
+				Navigation.PushAsync(new Login());
+			}
+			else
+			{
+				await DisplayAlert("Error", "No se pudo crear el usuario. Por favor, inténtelo de nuevo más tarde.", "OK");
+			}
+		}
+
+		private async Task<bool> CreateUser(string nombre, string apellido, string correo, string contrasena)
+		{
+			try
+			{
+				var user = new
+				{
+					Nombre = nombre,
+					Apellido = apellido,
+					Email = correo,
+					Contrasena = contrasena
+				};
+
+				var json = JsonSerializer.Serialize(user);
+				var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+				var response = await _httpClient.PostAsync("http://3.129.71.4:3000/createuser", content);
+
+				if (response.IsSuccessStatusCode)
+				{
+					// Leer la respuesta como cadena JSON
+					var responseContent = await response.Content.ReadAsStringAsync();
+
+					// Deserializar la respuesta para verificar si la creación fue exitosa
+					var result = JsonSerializer.Deserialize<ApiResponse>(responseContent);
+
+					if (result != null && result.success)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error al crear el usuario: {ex.Message}");
+				return false;
+			}
+		}
+
+		private bool ValidarCorreoElectronico(string correo)
+		{
+			// Expresión regular para validar el correo electrónico
+			System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook)\.(com|es)$");
+			return regex.IsMatch(correo);
+		}
+	}
 
 
-    private async void Procesar_Clicked(object sender, EventArgs e)
-    {
-        // Verificar si algún campo está vacío
-        if (string.IsNullOrWhiteSpace(RegNombre.Text) || string.IsNullOrWhiteSpace(RegApellido.Text) ||
-            string.IsNullOrWhiteSpace(RegEmail.Text) || string.IsNullOrWhiteSpace(RegContra.Text) ||
-            string.IsNullOrWhiteSpace(RegPhone.Text))
-        {
-            await DisplayAlert("Error", "Por favor, llene todos los campos.", "OK");
-            return; // Si hay campos vacíos, termina aquí y no continúa con las validaciones.
-        }
 
-        // Obtener los valores de los campos
-        string nombre = RegNombre.Text.Trim();
-        string apellido = RegApellido.Text.Trim();
-        string correo = RegEmail.Text.Trim();
-        string contrasena = RegContra.Text.Trim();
-        string telefono = RegPhone.Text.Trim();
-
-        // Validar el correo electrónico
-        bool esValido = ValidarCorreoElectronico(correo);
-
-        if (!esValido)
-        {
-            await DisplayAlert("Error", "Inserte un correo válido (Gmail, Hotmail, Outlook)", "OK");
-            return;
-        }
-
-        // Validar el teléfono
-        if (telefono.Length != 8 || !EsNumero(telefono))
-        {
-            await DisplayAlert("Error", "El número de teléfono debe tener 8 dígitos y ser numérico.", "OK");
-            return;
-        }
-
-        // Si todos los campos están llenos y las validaciones son exitosas, continuar con el proceso.
-
-        // Crear una instancia de la página LoginPage.xaml
-        Login loginPage = new Login();
-
-        // Obtener el NavigationPage actual
-        NavigationPage currentNavigationPage = Application.Current.MainPage as NavigationPage;
-
-        // Verificar si currentNavigationPage no es nulo antes de continuar
-        if (currentNavigationPage != null)
-        {
-            // Navegar a la página LoginPage.xaml sin opción para volver atrás
-            await currentNavigationPage.Navigation.PushAsync(loginPage);
-        }
-    }
-
-    private bool ValidarCorreoElectronico(string correo)
-    {
-        // Expresión regular para validar el correo electrónico
-        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook)\.(com|es)$");
-        return regex.IsMatch(correo);
-    }
-
-    private bool EsNumero(string str)
-    {
-        // Verifica cada carácter en la cadena
-        foreach (char c in str)
-        {
-            // Si el carácter actual no es un dígito, devuelve falso
-            if (!char.IsDigit(c))
-                return false;
-        }
-        // Si se pasó por todos los caracteres y ninguno fue no numérico, devuelve verdadero
-        return true;
-    }
+	// Clase auxiliar para deserializar la respuesta de la API
+	public class ApiResponse
+	{
+		public bool success { get; set; }
+		public string message { get; set; }
+	}
 
 }
