@@ -8,23 +8,43 @@
     <!--Validacion de codigo-->
     <!--parte 2/3 para reponer Contraseña-->
     
-    <VerticalStackLayout>
+    <ScrollView>
+        <StackLayout Padding="40">
+            <Label Text="Validación de Código"
+                   TextColor="White"
+                   FontSize="28"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,50,0,20"/>
+            <Image Source="codigo.png"
+                   HeightRequest="150"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,20"/>
 
+            <Label Text="Por favor, ingrese el código de recuperación que ha recibido en su correo electrónico."
+                   TextColor="White"
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,20"/>
 
+            <Entry x:Name="CodiRec"
+                   Placeholder="Ingrese El Código De Recuperación"
+                   Keyboard="Numeric"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   BackgroundColor="#f5f5f5"
+                   TextColor="#333333"
+                   HeightRequest="50"/>
 
-        <Entry x:Name="CodiRec" Placeholder="Ingrese El Codigo De Recuperacion" Keyboard="Numeric" 
-                    VerticalOptions="Center"
-                     HorizontalOptions="Fill"
-                     HorizontalTextAlignment="Center"
-                     TranslationY="16"
-                     FontSize="16"/>
-
-        <Button 
-            x:Name="BtnEnv" 
-            TranslationY="45"
-            Text="Enviar"
-            FontSize="15"
-            Clicked="BtnEnv_Clicked"
-                />
-    </VerticalStackLayout>
+            <Button x:Name="BtnEnv"
+                    Text="Enviar"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="16"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"
+                    Clicked="BtnEnv_Clicked"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

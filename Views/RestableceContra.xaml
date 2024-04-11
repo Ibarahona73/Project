@@ -6,31 +6,51 @@
 
     <!--Cambio De Contraseña-->
     <!--parte 3/3 para reponer Contraseña-->
-    
-    <VerticalStackLayout>
-        
 
-        <Entry x:Name="NewPass" Placeholder="Ingrese Su Nueva Contraseña" Keyboard="Text"
-                  VerticalOptions="Center"
-                  HorizontalOptions="Fill"
-                  HorizontalTextAlignment="Center"
-                  TranslationY="10"
-                  FontSize="16"/>
+    <ScrollView>
+        <StackLayout Padding="40">
+            <Label Text="Restablecer Contraseña"
+                   TextColor="White"
+                   FontSize="28"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,50,0,20"/>
 
+            <Label Text="Por favor, ingrese su nueva contraseña y confírmela."
+                   TextColor="White"
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,20"/>
 
-        <Entry x:Name="ConfirmPass" Placeholder="Confirme La Contraseña" Keyboard="Text" 
-                    VerticalOptions="Center"
-                     HorizontalOptions="Fill"
-                     HorizontalTextAlignment="Center"
-                     TranslationY="16"
-                     FontSize="16"/>
+            <Entry x:Name="NewPass"
+                   Placeholder="Ingrese Su Nueva Contraseña"
+                   Keyboard="Text"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   BackgroundColor="#f5f5f5"
+                   TextColor="#333333"
+                   HeightRequest="50"
+                   Margin="0,5,0,25"/>
 
-        <Button 
-            x:Name="BtnEnv" 
-            TranslationY="45"
-            Text="Enviar"
-            FontSize="15"
-            Clicked="BtnEnv_Clicked"/>
+            <Entry x:Name="ConfirmPass"
+                   Placeholder="Confirme La Contraseña"
+                   Keyboard="Text"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   BackgroundColor="#f5f5f5"
+                   TextColor="#333333"
+                   HeightRequest="50"/>
 
-    </VerticalStackLayout>
+            <Button x:Name="BtnEnv"
+                    Text="Enviar"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="16"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"
+                    Clicked="BtnEnv_Clicked"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

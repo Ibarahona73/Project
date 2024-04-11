@@ -9,35 +9,39 @@
 
     <VerticalStackLayout>
 
-        <Label
-            Text="Recuperacion de Contraseña"   
-            FontSize="Title"
-            HorizontalTextAlignment="Center"                
-        />
-        
-        
-        <Image
-            Source="regis.png"             
-            SemanticProperties.Description="Sign Up User!"
-            HeightRequest="200"
-            WidthRequest="200"
-            TranslationY="10"
-            HorizontalOptions="CenterAndExpand"/>   
+        <Label Text="Recuperación de Contraseña"
+                   TextColor="White"
+                   FontSize="28"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,50,0,20"/>
 
-        <Entry 
-           x:Name="CorreoRes" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text"                    
-           VerticalOptions="Center"
-           HorizontalOptions="Fill"
-           HorizontalTextAlignment="Center"
-           TranslationY="25"
-           FontSize="16"/>
 
-        <Button 
-            x:Name="BtnEnvRec" 
-            TranslationY="45"
-            Text="Enviar Codigo Recuperacion"
-            FontSize="15"
-            Clicked="BtnEnvRec_Clicked"/>
+        <Image Source="recontra.png"
+                   HeightRequest="150"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,20"/>
+
+        <Entry x:Name="CorreoRes"
+                   Placeholder="Ingrese Su Correo Electrónico"
+                   Keyboard="Email"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="16"
+                   BackgroundColor="#f5f5f5"
+                   TextColor="#333333"
+                   HeightRequest="50"
+                   WidthRequest="340"
+                   />
+
+        <Button x:Name="BtnEnvRec"
+                    Text="Enviar Código de Recuperación"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="16"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"
+                    Clicked="BtnEnvRec_Clicked"/>
 
     </VerticalStackLayout>
 </ContentPage>

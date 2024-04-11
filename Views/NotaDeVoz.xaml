@@ -7,7 +7,6 @@
 
         <Image Source="mic_off.png" WidthRequest="75" HeightRequest="75" Margin="5,5,5,40" Grid.Row="0" TranslationY="30" x:Name="micro" />
 
-
         <Button x:Name="Grabar" Text="Grabar" Clicked="Grabar_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20" />
         <Button x:Name="Stop" Text="Stop" Clicked="Stop_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20"/>
         <Button x:Name="rep" Text="Play"   Clicked="rep_Clicked" Margin="5,5,5,5" HorizontalOptions="FillAndExpand" CornerRadius="20"/>
@@ -33,11 +32,11 @@
        
         <Button x:Name="GDatos" Text="Guardar" Clicked="GDatos_Clicked" HorizontalOptions="FillAndExpand"/>
 
-        <Label Text="Activar Recordatorio: " TextColor="Cyan" FontSize="16" Margin="15,15,5,5" FontAttributes="Bold"/>
+        <Label Text="Activar Recordatorio: "  FontSize="16" Margin="15,15,5,5" FontAttributes="Bold"/>
 
         <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche" TranslationY="-37"
                 Toggled="switche_Toggled">
-            
+
             <Switch.Resources>
                 <Style TargetType="Switch">
                     <Style.Triggers>
@@ -45,7 +44,7 @@
                             <Setter Property="ThumbColor"
                             Value="LightGreen"/>
                         </Trigger>
-                        
+
                         <Trigger TargetType="Switch" Property="IsToggled" Value="False">
                             <Setter Property="ThumbColor"
                                     Value="Red"/>
@@ -55,8 +54,6 @@
                 </Style>
             </Switch.Resources>
         </Switch>
-
-
 
     </VerticalStackLayout>
 </ContentPage>

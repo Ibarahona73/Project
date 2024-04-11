@@ -104,12 +104,19 @@ namespace Project.Views
 			System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook)\.(com|es)$");
 			return regex.IsMatch(correo);
 		}
-	}
+
+        private async void ReadAccount_Clicked(object sender, EventArgs e)
+        {
+            Login LoginPage = new Login();
+            await Navigation.PushAsync(LoginPage);
+
+        }
+    }
 
 
 
-	// Clase auxiliar para deserializar la respuesta de la API
-	public class ApiResponse
+    // Clase auxiliar para deserializar la respuesta de la API
+    public class ApiResponse
 	{
 		public bool success { get; set; }
 		public string message { get; set; }

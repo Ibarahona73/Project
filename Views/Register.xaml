@@ -3,69 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.Register"
              Title="Register">
-    
-    
-    <VerticalStackLayout>
-        <Label             
-            Text="Sign-Up"
-            Style="{StaticResource SubHeadline}"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="Center" 
-            TranslationY="-6"/>
-
-        <Image
-            Source="regis.png"             
-            SemanticProperties.Description="Sign Up User!"
-            HeightRequest="200"
-            WidthRequest="200"
-            TranslationY="5"
-            HorizontalOptions="CenterAndExpand"/>
 
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <StackLayout Padding="30">
+            <StackLayout VerticalOptions="Start" HorizontalOptions="Center">
+                <Label Text="Sign-Up"
+                       TextColor="White"
+                       FontSize="40"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,20,0,20"/>
+                <Image Source="regis.png"
+                       HeightRequest="100"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
 
+            <!-- Formulario de registro -->
+            <Frame BackgroundColor="White" CornerRadius="10" Padding="20" Margin="0,30,0,0">
+                <StackLayout Spacing="20">
+                    <Entry x:Name="RegNombre"
+                           Placeholder="Nombre"
+                           Keyboard="Text"
+                           HorizontalOptions="FillAndExpand"
+                           FontSize="16"
+                           BackgroundColor="#f5f5f5"
+                           TextColor="#333333"
+                           HeightRequest="50"/>
+
+                    <Entry x:Name="NombreCompleto"
+                           Placeholder="Apellido"
+                           Keyboard="Text"
+                           HorizontalOptions="FillAndExpand"
+                           FontSize="16"
+                           BackgroundColor="#f5f5f5"
+                           TextColor="#333333"
+                           HeightRequest="50"/>
+
+                    <Entry x:Name="RegEmail"
+                           Placeholder="Correo Electrónico"
+                           Keyboard="Email"
+                           HorizontalOptions="FillAndExpand"
+                           FontSize="16"
+                           BackgroundColor="#f5f5f5"
+                           TextColor="#333333"
+                           HeightRequest="50"/>
+
+                    <Entry x:Name="RegContra"
+                           Placeholder="Contraseña"
+                           Keyboard="Text"
+                           HorizontalOptions="FillAndExpand"
+                           FontSize="16"
+                           BackgroundColor="#f5f5f5"
+                           TextColor="#333333"
+                           HeightRequest="50"
+                           IsPassword="True"/>
+
+                    <Button x:Name="Procesar"
+                            Clicked="Procesar_Clicked"
+                            Text="Registrarse"
+                            BackgroundColor="#007bff"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="50"/>
+                </StackLayout>
+            </Frame>
             
-
-            <Entry x:Name="RegNombre" Placeholder="Ingrese Su Nombre" Keyboard="Text" Grid.Row="1"                    
-                   VerticalOptions="Center"
-                   HorizontalOptions="Fill"
-                   HorizontalTextAlignment="Center"
-                   FontSize="15"/>
-
-
-            <Entry x:Name="NombreCompleto" Placeholder="Ingrese Su Apellido" Keyboard="Text" Grid.Row="1" Grid.Column="1"                    
-                    VerticalOptions="Center"
-                    HorizontalOptions="Fill"
-                    HorizontalTextAlignment="Center"
-                    FontSize="15"/>  
-
-        </Grid>
-
-        <Entry x:Name="RegEmail" Placeholder="Ingrese Su Correo Electronico" Keyboard="Text" HorizontalOptions="Fill" HorizontalTextAlignment="Center" FontSize="15"/>
-        
-        <Entry x:Name="RegContra" Placeholder="Ingrese Su Contraseña" Keyboard="Text" HorizontalOptions="Fill" HorizontalTextAlignment="Center" TranslationY="20" 
-               IsPassword="True" FontSize="15"/>
-
-       
-
-        <Button
-              x:Name="Procesar"
-              Clicked="Procesar_Clicked"
-              HorizontalOptions="Fill" 
-              Text="Procesar"                                       
-              FontSize="14"
-              TranslationY="35"
-              IsEnabled="True"/>
-
-
-    </VerticalStackLayout>
+            <Button x:Name="ReadAccount"
+                    Clicked="ReadAccount_Clicked"
+                    TextColor="#007bff"
+                    Text="Ya Tienes una Cuenta?"
+                    BackgroundColor="Transparent"
+                    FontSize="18"
+                    TranslationY="0"
+                    HorizontalOptions="Center"/>       
+            </StackLayout>
+    </ScrollView>
 </ContentPage>

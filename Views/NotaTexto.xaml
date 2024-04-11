@@ -19,9 +19,9 @@
 
         <!-- Contenido de la Nota -->
         <StackLayout Grid.Row="1" Padding="25" Spacing="15">
-            
+
             <Label Text="Contenido de la Nota:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15" />
-            
+
             <Frame BackgroundColor="White" CornerRadius="5" Padding="5" >
                 <Editor x:Name="ContenidoEntry" Placeholder="Ingrese el Contenido de la Nota" HeightRequest="100" />
             </Frame>
@@ -41,7 +41,7 @@
 
             <Switch HorizontalOptions="FillAndExpand" IsToggled="False" x:Name="switche" TranslationY="-27" TranslationX="-15" 
                     Toggled="switche_Toggled">
-                
+
                 <Switch.Resources>
                     <Style TargetType="Switch">
                         <Style.Triggers>
@@ -65,5 +65,5 @@
         <!-- Botón de Crear Nota -->
         <Button Grid.Row="3" Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" BackgroundColor="#0077B6" Margin="12"  FontAttributes="Bold" />
     </Grid>
-    
+
 </ContentPage>

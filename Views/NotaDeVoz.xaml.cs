@@ -160,8 +160,9 @@ namespace Project.Views
         {
             if (switche.IsToggled)
             {
-
                 await DisplayAlert("Estado: ", "\tActivo \n Nota De Voz", "OK");
+
+
             }
             else
             {
@@ -171,4 +172,6 @@ namespace Project.Views
 
         }
     }
+   
+
 }
