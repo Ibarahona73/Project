@@ -83,6 +83,7 @@ namespace Project.Views
 
 		private async void GDatos_Clicked(object sender, EventArgs e)
 		{
+			
             DateTime fechaYHoraSeleccionada;
 			int estado;
 			string hola;
@@ -90,11 +91,13 @@ namespace Project.Views
 			if (switche.IsToggled) {
 
 				estado = 1;
-				Console.WriteLine(estado);
+                hola = estado.ToString();
+                Console.WriteLine(estado);
 			}
 			else
 			{
                 estado = 0;
+                hola = estado.ToString();
                 Console.WriteLine(estado);
             }
 			
@@ -118,12 +121,13 @@ namespace Project.Views
 					rutaArchivo = Convert.ToBase64String(audi),
 					reminderDate = fechaYHoraSeleccionada,
 					tiporecordatorio = 1,
-					id_usuario = Preferences.Get("UserId", defaultValue: 0),
-					//hola = estado.ToString(),
-										
+					estado = hola,
+                    id_usuario = Preferences.Get("UserId", defaultValue: 0),
+														
 					
 				};
-                Console.WriteLine(estado);
+
+                Console.WriteLine(hola);
 
                 var json = JsonConvert.SerializeObject(notaDeVoz);
 				var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -149,7 +153,8 @@ namespace Project.Views
 			{
 				await DisplayAlert("Error", $"Se produjo un error al agregar la nota de voz: {ex.Message}", "OK");
 			}
-		}
+            switche.IsToggled = false;
+        }
 
         private async void switche_Toggled(object sender, ToggledEventArgs e)
         {
