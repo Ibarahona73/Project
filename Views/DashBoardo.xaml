@@ -81,10 +81,6 @@
                   ContentTemplate="{DataTemplate local1:NotaTexto}"
                   Route="NotaTexto"/>
 
-    <ShellContent Icon="recordatorio.png"
-                  Title="Lista De Recordatorio"
-                  ContentTemplate="{DataTemplate local1:ListaRecordatorio}"
-                  Route="ListaRecordatorio"/>
 
     <Shell.FlyoutFooter>
         <Frame BackgroundColor="Transparent" Padding="20" Margin="10" HorizontalOptions="Start">

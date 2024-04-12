@@ -44,6 +44,21 @@
 		<TargetFrameworks>;net8.0-android34.0</TargetFrameworks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningKeyAlias>test</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>test1234</AndroidSigningKeyPass>
+	  <AndroidSigningStorePass>test1234</AndroidSigningStorePass>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningKeyAlias>test</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>test1234</AndroidSigningKeyPass>
+	  <AndroidSigningStorePass>test1234</AndroidSigningStorePass>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\logo.png" Color="Transparent" ForegroundScale="0.65" />
