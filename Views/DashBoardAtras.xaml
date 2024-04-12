@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Project.Views.DashBoardAtras" NavigationPage.HasBackButton="False" NavigationPage.HasNavigationBar="False">
 
-	<StackLayout>
-		<!-- Otros elementos de tu interfaz -->
-		<Label x:Name="lblUserName" Text="Nombre de Usuario" />
-		<!-- Otros elementos de tu interfaz -->
-	</StackLayout>
+
+    <StackLayout>
+        <WebView x:Name="MyWebView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+    </StackLayout>
 </ContentPage>
