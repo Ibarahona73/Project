@@ -15,15 +15,15 @@
         </Grid.RowDefinitions>
 
         <!-- Icono -->
-        <Image Grid.Row="0" Source="not.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="480" HeightRequest="160" TranslationX="3" TranslationY="5" />
+        <Image Grid.Row="0" Source="not.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="480" HeightRequest="120" TranslationX="3" TranslationY="5" />
 
         <!-- Contenido de la Nota -->
-        <StackLayout Grid.Row="1" Padding="25" Spacing="15">
+        <StackLayout Grid.Row="1" Padding="25" Spacing="10">
 
             <Label Text="Contenido de la Nota:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15" />
 
             <Frame BackgroundColor="White" CornerRadius="5" Padding="5" >
-                <Editor x:Name="ContenidoEntry" Placeholder="Ingrese el Contenido de la Nota" HeightRequest="100" />
+                <Editor x:Name="ContenidoEntry" Placeholder="Ingrese el Contenido de la Nota" HeightRequest="100" TextColor="Black"/>
             </Frame>
 
             <Label Text="Fecha de Recordatorio:" VerticalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,0,0,15"/>
@@ -63,7 +63,7 @@
         </StackLayout>
 
         <!-- Botón de Crear Nota -->
-        <Button Grid.Row="3" Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" BackgroundColor="#0077B6" Margin="12"  FontAttributes="Bold" />
+        <Button Grid.Row="3" Text="Crear Nota de Texto" Clicked="CrearNota_Clicked" BackgroundColor="#0077B6" Margin="12"  FontAttributes="Bold" TranslationY="-20"/>
     </Grid>
 
 </ContentPage>

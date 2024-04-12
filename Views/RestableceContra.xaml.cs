@@ -69,9 +69,12 @@ namespace Project.Views
 
 						await DisplayAlert("Mensaje de la API", mensaje, "OK");
 
-						// Navegar a la página de inicio de sesión (LoginPage)
-						await Navigation.PopToRootAsync(); // Para volver a la página de inicio
-					}
+                        // Navegar a la página de inicio de sesión (LoginPage) // Para volver a la página de inicio
+                        //await Navigation.PopToRootAsync(); 
+                        Login logueo = new Login();
+                        await Navigation.PushAsync(logueo);
+                        
+                    }
 					else
 					{
 						// Mostrar mensaje si la solicitud no fue exitosa
